@@ -1,0 +1,23 @@
+.genre--title{
+    position:relative;
+    left: 3%;
+    display: inline;
+
+   
+    
+
+}
+.genre--title p{
+    font-family: Helvetica;
+    display: inline-block;
+    
+    margin-block-start:0;
+    margin-block-end:0;
+
+    font-size: 3vw;
+    margin: .2em 0 .2em 0;
+    
+    font-weight: 600;
+    
+    color: #d8d8d8;
+}

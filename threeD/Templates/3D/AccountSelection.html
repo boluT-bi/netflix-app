@@ -1,0 +1,88 @@
+{% load stringConcat %}
+{% load toString %}
+{% load urlparams %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = 'UTF-8'>
+        <meta name = 'viewport' content = 'width = device-width  initial-scale = 1.0'>
+        <meta http-equiv = 'X-UA-Compatible' content = 'ie=edge, chrome=1'>
+        <meta name= 'HandledFriendly' content = 'true'>
+        <link rel = 'stylesheet' href= '../static/css/accountStyles.css' type = 'text/css'>
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+
+        </style>
+        <script src = '../static/js/profLog.js'>
+        </script>
+    </head>
+    <body>
+        
+        <div class = 'profileSelect'>
+            <div class= hTitle>
+                <p>Who's watching ?</p>
+            </div>
+            
+                  
+                <div class = 'iconList-wrapper' id = 'profList'>
+                    
+                    {% if profiles %}
+                        {% for profile in profiles %}
+                            <div class = 'profileObject sbsqntProfs' id = 'profileObject'>
+                        
+                                <div class= 'testPlcHoldr'>
+                                    <i class  = 'fa fa-edit' style = 'display:none; font-size: .2em; margin:auto; color:#fff;'></i>
+                                    <a class = 'profToMain'  href = '{% url "switchProfile" %}{% urlparams prof=profile.name %}' style = 'display: block;  height:100%; width:100%;'></a>
+                                    
+                                </div>
+                                
+                                <div class = 'objectLabel'>
+                                    <span>{{profile.name}}</span>
+                                </div>
+                                
+                                
+
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                            
+                    
+
+                </div>
+                <div class = 'profileObject-btn-wrapper'>
+                    <div class = 'profileObject-btn' id='toProfCreation'>
+                        <a class = 'btn-lnk' href = '{% url "prof-create" %}'>
+                            <svg class  ='profBtn' width = '100%' height = '100%' fill = 'rgba(0,0,0,0)'  xmlns = 'http://www.w3.org/2000/svg' viewbox = '0 0 1 1'>
+                            
+                                <mask id = 'profBtn-crss'>
+                                    <rect x= 0 y = 0 width = 100% height = 100% fill = 'white'></rect>
+                                    <path d = 'M 0.2 0.45 L 0.45 0.45 L 0.45 0.2 L 0.55 0.2 L 0.55 0.45 L 0.8 0.45 L 0.8 0.55 L 0.55 0.55 L  0.55 0.8 L 0.45 0.8 L 0.45 0.55 L 0.2 0.55 L 0.2 0.45' fill = 'black'></path>  
+
+                                    
+                                </mask>
+                            
+                                <circle cx = '0.5' cy = '0.5' r = '0.5' mask = 'url(#profBtn-crss)' fill = '#696969'></circle>
+                            </svg>
+                        </a>
+                            
+                            
+                        
+                    </div>
+                    <div class = 'objectLabel' style = 'top:25%;'><span> Add profile</span></div>
+                </div>
+          
+            <div class = 'profileManage-btn-ctnr'>
+                <button class = 'profileManage-btn' onclick = 'manageDisplay()'>MANAGE PROFILES</button>
+            </div>
+        
+            <input type = 'hidden' id = 'sessionId' name= 'profile' value>
+        
+        </div> 
+        
+            
+            
+         
+    </body>
+</html>

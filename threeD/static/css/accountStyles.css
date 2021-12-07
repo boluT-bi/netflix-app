@@ -1,0 +1,406 @@
+html,body{
+    background-color: rgb(0,0,0);
+    width: 100%;
+    height: 100%;
+    margin: 0;
+
+}
+.profileSelect{
+    position: absolute;
+    
+    width: 100%;
+    height: 100%;
+    
+}
+
+.hTitle {
+    position:relative;
+    top:5%;
+    left:27.5%;
+    width:45%;
+    height:fit-content;
+    display: flex;
+    justify-content:center;
+}
+.hTitle p{
+    font-family: Helvetica;
+    font-size: 3vw;
+    color: #ffff;
+
+
+}
+
+.testPlcHoldr{
+    width:  100%;
+    height: 80%;
+    background: linear-gradient(to bottom, rgb(77,77,255), rgb(233,244,248));
+    border-radius: 6px;
+    display:flex;
+    justify-content: center;
+    font-size: 10vw;
+    
+}
+.iconList-wrapper{
+    position:relative;
+    display: block;
+    margin:auto;
+    top: 5%;
+    width: fit-content;
+    height: fit-content;
+
+   
+    
+
+
+
+}
+.btn-lnk{
+    text-decoration: none;
+    height: 100%;
+    width: 100%;
+}
+
+
+.profileObject-btn{
+    position: relative;
+    margin: auto;
+    top: 10%;
+    height: 50%;
+    width: 50%;
+    border-radius: 50%;
+
+    background-color: rgb(0,0,0);
+    cursor: pointer;
+
+}
+.addFunction-vertical{
+    border: solid #000;
+    border-width: 0 8px 0 0;
+    position: absolute;
+    top: 25%;
+    height: 50%;
+    left: 42%;
+
+}
+.addFunction-horizontal{
+    border: solid #000;
+    border-width: 8px 0 0 0;
+    position: absolute;
+    top: 44%;
+    width: 50%;
+    left: 25%;
+}
+
+.profileObject{
+    float: left;
+    height: 10vw;
+    width: 8vw;
+    padding-right: 20px;
+    
+    
+    cursor: pointer;
+}
+.newProfObject{
+    position:relative;
+    width:15%;
+    height: 100%;
+    left: 40%;
+}
+.profileObject-btn-wrapper{
+    position:relative;
+    display: inline-block;
+    height: 10vw;
+    width: 10vw;
+    top: 5%;
+    left: 3%;
+    border-radius: 4px;
+   
+    
+}
+
+.objectLabel{
+    position: relative;
+    top: 2%;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    
+    
+
+    
+    
+    
+    
+
+}
+.objectLabel span{
+   
+    color: #333;
+    font-family: Helvetica;
+    
+    font-size: 1.4vw;
+}
+.profileManage-btn-ctnr{
+    position: relative;
+    top: 15%;
+    display:flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    width: 50%;
+    left: 25%;
+    height: fit-content;
+
+}
+.profileManage-btn{
+    position:absolute;
+    border: 2px solid #333;
+    outline: none;
+    background-color: #020202;
+    color: #333;
+    font-family: Helvetica;
+    letter-spacing: 2px;
+    font-size: .8vw;
+    width:25%;
+    height: 2vw;
+    cursor: pointer;
+    transition: .3s ease;
+
+
+}
+.profileManage-btn:focus{
+    outline:none;
+}
+.profileManage-btn:hover{
+    background-color: #161616;
+
+}
+
+
+.newProfileDisplay{
+    width: 100%;
+    height:100%;
+    
+}
+.profCreate-ctnr{
+    position:absolute;
+    top: 20%;
+    left:25%;
+    width: 50%;
+    height: 40%;
+
+
+}
+.createContext{
+    position:relative;
+    width:100%;
+    top:0%;
+    height:fit-content;
+}
+.createContext span{
+    font-family: Helvetica;
+    font-size: 35px;
+    color: #ffff;
+}
+.elab-context{
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    top: 3%;
+
+    
+}
+.elab-context span{
+    color: #333;
+    font-size: 14px;
+    font-family: Helvetica;
+}
+
+.profCreate-wrapper{
+    
+    width:100%;
+    height: 100%;
+
+}
+.profIcon-plcHldr{
+    position: relative;
+    top: 20%;
+    left: 0%;
+    width: 15%;
+    height: 45%;
+    background-color: #e76c03;
+    outline: none;
+
+}
+.profForm input[type=text]{
+    position: relative;
+    top: 36%;
+    left: 3%;
+    height: 10%;
+    background-color: #808080;
+    width: 35%;
+    border:none;
+    opacity: 0.7;
+
+
+
+}
+.profForm input[type=text]:focus{
+    outline: none;
+}
+.profForm input[type=text]::placeholder{
+    color: #fff;
+   
+}
+.container{
+    display: block;
+    font-family: Helvetica;
+    font-size: 14px;
+    color: #fff;
+    position:relative;
+    left: 5%;
+    top: 35%;
+    width: 30%;
+    height: 25px;
+    cursor:pointer;
+    -webkit-user-select:none;
+    -ms-user-select:none;
+    -moz-user-selection: none;
+    user-select:none;
+    
+
+}
+.container input[type=checkbox]{
+    position: absolute;
+    opacity: 0;
+    height:0;
+    width: 0;
+    cursor: pointer;
+    
+
+
+    
+}
+.checkmark{
+    position:absolute;
+    top:0;
+    left:0;
+    height:25px;
+    width: 25px;
+    background-color: #0000;
+    border: 2px solid #333;
+    transition: .1s ease;
+    
+}
+.container input[type=checkbox]:hover ~.checkmark{
+    background-color: #333;
+}
+.container input[type=checkbox]:checked ~.checkmark{
+    background-color: #2196f3;
+}
+.checkmark::after{
+    content: '';
+    position:absolute;
+    display: none;
+}
+.container input[type=checkbox]:checked ~.checkmark::after{
+    display: block;
+}
+.container .checkmark::after{
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+.psuedo-Label{
+    position:relative;
+    left: 15%;
+    top: 25%;
+
+}
+.actn-btns-ctnr{
+    display:flex;
+    position: absolute;
+    top: 120%;
+    width: 100%;
+    height: 20%;
+    
+
+
+}
+.actn-btns-ctnr a{
+    position: relative;
+    cursor: pointer;
+    
+    outline:0;
+    
+    width: 15%;
+    text-decoration:none;
+    text-align: center;
+    align-items:flex-start;
+    display:inline-block;
+    
+    height: 60%;
+}
+.actn-btn--continue{
+    border:0;
+    background-color: #ff0000;
+    color: #fff;
+    font-family:Helvetica;
+    font-size: 16px;
+    cursor:pointer;
+    outline:0;
+    width:15%;
+    height: 60%;
+}
+.actn-btn--cancel{
+    border: 2px solid #333;
+    background-color: #0000;
+    color: #333;
+    font-family: Helvetica;
+    font-size: 16px;
+    left: 5%;
+}
+.profForm{
+    width: 100%;
+    position:relative;
+    top: 8%;
+    display:flex;
+    flex-direction:row;
+  
+    height: 70%;
+    border: solid #333;
+    border-width: .5px 0 .5px 0;
+}
+
+@media only screen and (max-width: 980px){
+    .profileManage-btn{
+        height: 3vw;
+        width: 18.75vw;
+        font-size: 1.2vw;
+    }
+    .objectLabel span{
+        font-size: 1.8vw;
+    }
+
+    
+}
+@media only screen and (max-width:640px){
+    .profileManage-btn{
+        height: 4vw;
+        width: 25vw;
+
+    }
+    
+}
+
+.Cerr-val{
+    position: absolute;
+    margin: 14% 0 0 18%;
+    font-family: Helvetica;
+    font-size: .8vw;
+    color: rgb(255,0,0);
+}

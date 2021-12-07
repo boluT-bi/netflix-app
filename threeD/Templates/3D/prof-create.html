@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = 'UTF-8'>
+        <meta name  = 'viewport' content = 'width = device-width initial-scale = 1.0'>
+        <meta http-equiv = 'X-UA-Compatible' content = 'ie = edge'>
+        <link rel = 'stylesheet' href = '{% static "css/accountStyles.css" %}' type = 'text/css'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <script src = '{% static "js/profLog.js" %}'></script>
+        <div class = 'newProfileDisplay'>
+            <div class = 'profCreate-ctnr'>
+
+                <div class = 'createContext'>
+                    <span>Add profile</span>
+                </div>
+                <div class = 'elab-context'>
+                    <span>Add a profile for another person watching Netflix</span>
+                </div>
+                <form method = 'POST'  class = 'profForm'>
+                    
+                    {% if form %}
+                        {% csrf_token %}
+                        <div class = 'profIcon-plcHldr'></div>
+                        {{form.non_field_errors}}
+                        {{form.name.errors}}
+                        
+                        {{form.name}}
+                        {% if inval %}
+                            
+                            <p class = 'Cerr-val'>* {{inval}}</p>
+                            
+                        {% endif %}
+                        
+                        <label class = 'container'>
+                            <span class = 'psuedo-Label'>Kid?</span>
+                            <input type = 'checkbox' checked = 'checked'>
+                            <span class = 'checkmark'></span>
+                        </label>
+                        
+                        <div class = 'actn-btns-ctnr'>
+                            <input type = 'button' class='actn-btn--continue' value = 'Continue' onclick = 'sendProfile()'>
+                            <a href = '{% url "profile" %}' class = 'actn-btn--cancel'><span style= 'position: absolute; top:10%; left: 28%;'>Cancel</span></a>
+                        </div>
+                    {% endif %}
+                </form>
+            </div>
+
+        </div>
+
+    </body>
+</html>

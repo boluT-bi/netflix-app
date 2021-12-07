@@ -1,0 +1,9 @@
+.scrll-init{
+    display: block;
+    visibility: hidden;
+    position: absolute;
+    top: 80vh;
+    height: 40vh;
+    width: 100vw;
+    order: 998;
+}

@@ -1,0 +1,54 @@
+{% extends '3D/mainTab.html' %}
+{% load static %}
+{% load urlparams %}
+{% block subStyle %}
+    <link rel = 'stylesheet' href='{% static "css/itemTypeTwo.css" %}' type='text/css'>
+    <link rel = 'stylesheet' href = '{% static "css/genreDis.css" %}' type = 'text/css'>
+    
+
+{% endblock %}
+{% block tvUrl %}
+    {% if activeProfile %}
+        <a href = '{% url  "tvShows" %}'>
+            TV Shows
+        </a>
+    {% endif %}
+{% endblock %}
+{% block movieUrl %}
+        {% if activeProfile %}
+            <a href = '{% url "movies"  %}'>
+                Movies
+            </a>
+        {% endif %}
+{% endblock %}
+{% block dropDown %}
+    {% if profiles %}
+        {% for profile in profiles %}
+            <div class = 'profileObject'>
+                <div class = 'profileObjectIcon'></div>
+                <div class ='ProfileObjectName'>
+                    <a href = '{% url "switchProfile" %}{% urlparams prof=profile.name %}'>{{profile.name}}</a>
+                    
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+{% block content %}
+            <script src = '{% static "js/eventControls.js" %}' type = 'module'></script>
+            
+            <section class = 'ref-ctnr'>
+                <div class = 'subContentOne gridMode'>
+                    <div class = 'pageIntroContainer'>
+                        <div class = 'genre--title'>
+                            <p>My List</p>
+                        </div>
+                    </div>
+                    <div class = 'pusher'></div>
+                    <script src = '{% static "js/myListHndle.js" %}' type = 'module'></script>
+
+                </div>
+            </section>
+            <footer class='footer'></footer>
+            <input id = 'profile-user' type = 'hidden' value='{{activeProfile}}'>
+{% endblock %}

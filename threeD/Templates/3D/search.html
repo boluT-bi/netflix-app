@@ -1,0 +1,75 @@
+{% extends "3D/mainTab.html" %}
+{% load static %}
+{% load urlparams %}
+{% block subStyle %}
+    <link id = 'searchStyle' rel = 'stylesheet' href = '{% static "css/search.css" %}' type= 'text/css'>
+{% endblock %}
+{% block tvUrl %}
+    {% if activeProfile %}
+        <a href = '{% url  "tvShows" %}'>
+            TV Shows
+        </a>
+    {% endif %}
+{% endblock %}
+{% block movieUrl %}
+        {% if activeProfile %}
+            <a href = '{% url "movies"  %}'>
+                Movies
+            </a>
+        {% endif %}
+{% endblock %}
+{% block dropDown %}
+    {% if profiles %}
+        {% for profile in profiles %}
+            <div class = 'profileObject'>
+                <div class = 'profileObjectIcon'></div>
+                <div class ='ProfileObjectName'>
+                    <a href = '{% url "switchProfile" %}{% urlparams prof=profile.name %}'>{{profile.name}}</a>
+                    
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    
+    
+    <script type ='module' src ='{% static "js/eventControls.js" %}'></script>
+    <section class = 'ref-ctnr'>
+        
+        <div class = 'subContentOne'>
+            <div class = 'searchHelper'>
+                <p class = 'searchHelper--imutable'>Explore Titles Related To:</p>
+                <div class = 'searchHelper--mutable'>
+                    <p class = 'search-sugg'></p>
+                </div>
+            </div>
+            <div class = 'scrll-init'></div>
+            <div class = 'pusher'></div>
+            <input type ='hidden' id = 'query' value = '{{query}}'>
+            <input type = 'hidden' id='profile-user' value = '{{activeProfile}}'>
+            <script type = 'module' src = '{% static "js/search.js" %}'></script>
+            
+            
+        </div>
+    </section>
+    <footer class = 'footer' >
+        <div class = 'footer-info'>
+            
+            <i class = 'fa fa-github' style = 'font-size: 2vw;'>
+                <a href = '#'></a>
+            </i>
+            
+            <div class = 'lgl-info'>
+                <p>
+                    This site is merely for display
+                </p>
+            </div>
+        </div>
+    </footer>
+   
+
+
+
+{% endblock %}

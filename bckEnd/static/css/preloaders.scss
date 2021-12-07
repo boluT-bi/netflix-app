@@ -1,0 +1,103 @@
+@use 'sass:math';
+
+$d: 2em;
+$n:8;
+$m:5;
+$t: 1s;
+
+
+
+
+@function vrepeat($value, $n: 12){
+    $list: ();
+    @for $i from 0 to $n{
+        $list: $list,$value;
+    }
+    @return $list;
+}
+
+
+@function bars($n: 12, $bar-w: .05*$d, $a: 0){
+    $n: $n - $n%2;
+    $ba: math.div(360deg, $n);
+    $g-list: ();
+    $m: .5*$n;
+    $o: .5*$bar-w;
+    @for $i from 0 to $n{
+        $g-list: $g-list,
+            linear-Gradient(($i + $a)*$ba,
+                transparent calc(50% - #{$o} - 1px),
+                grey calc(50% - #{$o}) calc(50% + #{$o}),
+                transparent calc(50% - #{$o} - 1px))
+    }
+    @return $g-list;
+
+}
+@function base-steps($n: 12, $m: $n, $a-ani: 0){
+    $ba: math.div(360deg, $n);
+    $s-list: ();
+    @for $i from 0 to $n{
+        $s-list: $s-list,
+            RGBA(0,0,0, if($a-ani > 0, var(--alpha#{$i}), math.div($i, $m - 1)))
+            if( $i > 0, ($n - $m)*$ba, unquote(''))
+            if( $i < $m - 1, ($n - $m + $i + 1)*$ba, unquote(''))
+
+    }
+    @return $s-list;
+}
+
+
+
+
+
+.load {
+	position: relative;
+	width: $d; height: $d;
+	border-radius: 50%;
+	clip-path: circle(calc(50% - 1px)); /* fix for non-high dpi browsers */
+	mask: var(--mask);
+    -webkit-mask-image: var(--mask);
+	
+	&::before, &::after {
+		position: absolute;
+		top: 0; right: 0; bottom: 0; left: 0;
+		border-radius: inherit;
+		mask: var(--mask);
+	}
+}
+
+#load-7 {
+	background: HSL(0deg, 0%, 50%);
+	--mask: 
+		conic-Gradient(from var(--a, 0deg), #{base-steps($n)}), 
+		linear-Gradient(grey, grey), 
+		radial-Gradient(grey #{.25*$d}, transparent 0), 
+		#{bars($n, 2px)};
+    mask-composite: intersect, exclude, vrepeat(add, $n + 1);
+	-webkit-mask-composite: source-in, source-out, vrepeat(source-over, $n + 1);
+	animation: 
+		hue $n*$t linear infinite, 
+		a $t steps($n) infinite
+}
+
+@keyframes hue{
+    to{
+        --hue: 360deg;
+    }
+}
+
+@keyframes a{
+    to{ 
+        --a: 360deg;
+    }
+}
+
+@for $x from 0 to $n{
+    @keyframes alpha#{$x}{ 50% {--alpha#{$x}: 1;}}
+}
+
+
+
+
+    
+    

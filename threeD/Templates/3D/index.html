@@ -1,0 +1,82 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = 'UTF-8'>
+        <meta name = 'viewport' content = 'width=device-width initial-scale=1.0'>
+        <meta http-equiv = 'X-UA-Compatible' content = 'ie=edge'>
+        <link rel = 'stylesheet' href = '{% static "css/logInStyles.css" %}' type = 'text/css'>
+        <link rel = 'shortcut icon' href = 'data:image/x icon' type = 'image/x icon'>
+        <link rel = 'stylesheet' href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+        <style>
+
+        </style>
+        <script src = '{% static "js/logIn.js" %}'>
+
+        </script>
+    </head>
+    <body>
+        <div class = 'customBg'>
+            
+            
+            <div class = 'bgContent'>
+                <div class = 'bg-overlay'></div>
+
+            </div>
+
+        </div>
+        <div class = 'form-wrapper'>
+            {% if form.errors %}
+                {% if inval %}
+                    <p>{{inval}}</p>
+                {% endif %}
+            {% endif %}
+            {% if next %}
+                {% if user.is_authenticated %}
+                    <p>subscribe or log-in with premium account</p>
+                {% else %}
+                    <p>please log-in</p>
+                {% endif %}
+            {% endif %}
+
+
+            <form method= 'POST'>
+                {% csrf_token %}
+                <div id = 'formCtnr'>
+                    <h1>Sign In</h1>
+                   
+                    {{form.non_field_errors}}
+                    {% for field in form %}
+                        <div class = 'fieldCtnr' id = masterField>
+                            <div class = 'fieldWrapper'>
+                                <div class = 'cstmPlaceholder' id ='plcHolder'>
+                                    <span>{{field.name}}</span>
+                                </div>
+                                {{form.field.errors}}
+
+                                <label for = '{{form.field.id_for_label}}'>{{field}}</label>
+                                {{form.field}}
+                            </div>
+                            <div class = 'fError' style = 'display: none;'><span>Enter valid e-mail</span></div>
+                        
+                        </div>
+                    
+                    {% endfor %}
+                    <input type='submit' value='Sign in'>
+                    <input type = 'hidden' name= 'next' value = "{{next}}">
+                </div>
+            </form>
+        </div>
+        <div class = 'site-footer-wrapper'>
+            <div class = 'site-footer'>
+                <i class = 'fab fa-github'></i>
+                <div class = 'site-footer-content'>
+                    <span>This site is unlicensed and merely for display</span>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>

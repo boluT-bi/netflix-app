@@ -1,0 +1,200 @@
+{% extends '3D/mainTab.html' %}
+{% load static %}
+{% load urlparams %}
+{% block subStyle %}
+
+    <link rel = 'stylesheet' href = '{% static "css/itemTypeTwo.css" %}' type='text/css'>
+    <link rel ='stylesheet' href = '{% static "css/itemTypeThree.css" %}' type = 'text/css'>
+{% endblock %}
+{% block tvUrl %}
+    {% if activeProfile %}
+        <a href = '{% url  "tvShows" %}'>
+            TV shows
+        </a>
+    {% endif %}
+{% endblock %}
+{% block movieUrl %}
+        {% if activeProfile %}
+            <a href = '{% url "movies" %}'>
+                Movies
+            </a>
+        {% endif %}
+{% endblock %}
+{% block dropDown %}
+    {% if profiles %}
+        {% for profile in profiles %}
+            <div class = 'profileObject'>
+                <div class = 'profileObjectIcon'></div>
+                <div class ='ProfileObjectName'>
+                    <a href = '{% url "switchProfile" %}{% urlparams prof=profile.name %}'>{{profile.name}}</a>
+                    
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+{% block content %}
+    
+    <script type = 'module' src = '{% static "js/eventControls.js" %}'></script>
+
+    <div class = 'load' id = 'load-7' style='display:none;'>
+    
+        
+    </div>
+    <div class = 'preload-ctnr' style = 'display:none;'>
+        <div class = 'preload-item'></div>
+        <div class = 'preload-item'></div>
+        <div class = 'preload-item'></div>
+        <div class = 'preload-item'></div>
+        <div class = 'preload-item'></div>
+        
+    </div>
+    <section class = 'ref-ctnr'>
+        <div class = 'subContentOne rowMode'>
+            <div class = 'tombStone-ctnr'>
+                <div class = 'tsInfo-ctnr'>
+                    <h2></h2>
+                    <div class = 'tsInfo--synopses'>
+                        <p></p>
+                    </div>
+                
+                    <div class = 'callToAct'>
+                        <div class='callToAct--play'>
+                            <div class = 'featureCtnr'>
+                                <div class = 'playButtonIcn'></div>
+                                <span>Play</span>
+                            </div>
+                        </div>
+                        <div class = 'callToAct--info'>
+                            <div class = 'featureCtnr'>
+                                <i class= 'fa fa-info-circle'></i>
+                                <span>More Info</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            
+                
+
+            </div>
+            
+            <div class = 'pageIntroContainer'>
+                <div class = 'subContent--title'>
+                    <p>Films</p>
+                </div>
+                <div class = 'subContent--genreDropdown'>
+                    <div class = 'subContent--genreDisplay'>
+                        <p>Genres</p>
+                    </div>
+                    <div class = 'subContent--genreDropdown-iconContainer'>
+                        <i class = 'dropDownSymbol'></i>
+                    </div>
+                    <div class= 'subContent--genreList' style = 'display:none;'>
+                        <div class = 'genreList--ctnr'data-type='movie'>
+                            
+                        
+                            <p class = 'genreList--item'>Action & Adventure</p>
+                            <p class = 'genreList--item'>Anime</p>
+                            <p class = 'genreList--item'>Comedy</p>
+                            <p class = 'genreList--item'>Crime</p>
+                            <p class = 'genreList--item'>Docuseries</p>
+                            <p class = 'genreList--item'>Drama</p>
+                            <p class = 'genreList--item'>Family</p>
+                            <p class = 'genreList--item'>Fantasy</p>
+                            <p class = 'genreList--item'>History</p>
+                            <p class = 'genreList--item'>Horror</p>
+                            <p class = 'genreList--item'>Music</p>
+                            <p class = 'genreList--item'>Mystery</p>
+                            <p class = 'genreList--item'>Reality</p>
+                            <p class = 'genreList--item'>Romance</p>
+                            <p class = 'genreList--item'>Sci-Fi</p>
+                            <p class = 'genreList--item'>Thriller</p>
+                            <p class = 'genreList--item'>War & politics</p>
+                            <p class = 'genreList--item'>Western</p>
+                        </div>
+
+                        
+                    </div>
+                </div>
+                <div class = 'viewHndle-ctnr'>
+                    <div role = 'button' class = 'rowView-Hndle'>
+                        <div class = 'rowView-icn-ctnr'>
+                            <div id = 'ln1'></div>
+                            <div id = 'ln2'></div>
+                            <div id = 'ln3'></div>
+                        </div>
+                    </div>
+                    <div role = 'button' class = 'gridView-Hndle gridInActive'>
+                    
+                        <div class = 'gridView-icn'>
+                            <svg class = 'gridView-icn--msk' width = '100%'  height = '100%' fill = 'rgba(0,0,0,0)' xmlns = 'http://www.w3.org/2000/svg' viewbox = '0 0 12 12'>
+                                <defs>
+                                    <mask id = 'gridView-icon--mask'>
+                                        <rect width = '100%' height = '100%' fill = 'white'></rect>
+                                        <path d = 'M 0 4 L 4 4 L 4 0 L 8 0  L 8 4 L 12 4 L 12 8 L 8 8 L 8 12 L 4 12 L 4 8 L 0 8' fill = 'black'></path>
+                                    </mask>
+                                </defs>
+                                <rect x = '0' y = '0' width = '100%' height = '100%' mask = 'url(#gridView-icon--mask)' fill = '#d8d8d8'></rect>
+                            </svg>
+
+                        
+                        </div>
+
+                    
+                    
+                    </div>
+                    <div class = 'viewHndle-prmtrs'>
+                        <div class = 'viewHndle-optionPlchldr'>
+                            <p>Z-A</p>
+                        </div>
+                        <div class = 'viewHndle-drpDwn'></div>
+                        <div class = 'viewHndle-toggle--dd'>
+                            <div class = 'viewDD-btn--ctnr'>
+                                <i id = 'viewDD-btn'></i>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                
+                
+            </div>
+            <div class = 'pusher'></div>
+            
+            <script type = 'module' src='{% static "js/subCatTwo.js" %}'></script>
+        
+            
+        
+            
+        </div>
+    </section>
+    <footer class = 'footer' >
+        <div class = 'footer-info'>
+            
+            <i class = 'fa fa-github' style = 'font-size: 2vw;'>
+                <a href = '#'></a>
+            </i>
+            
+            <div class = 'lgl-info'>
+                <p>
+                    This site is merely for display
+                </p>
+            </div>
+        </div>
+    </footer>
+        
+   
+    
+    
+    
+
+    
+    <input id = 'profile-user' type='hidden' value = {{activeProfile}}>
+    
+  
+{% endblock %}
+
+
+
