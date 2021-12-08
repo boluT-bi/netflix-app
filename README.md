@@ -8,7 +8,7 @@ The goal of this project was to mimic key UI features aswell as some functions t
 ### Table of contents
 * [Technologies](#technologies)
 * [Personalisation Features](#personalisation-features)
-* [Access](#access)
+
 
 ### Technologies
 Project is created with:
@@ -24,5 +24,4 @@ Project is created with:
   This project implements the collaborative filtering machine learning technique, matrix factorization, to predict the ratings of unrated items stored in the browser by a a         particular profile of a user.
 
 
-### Access
-The application is hosted on a google cloud server and can be accessed via <https://magnetic-signer-331716.ew.r.appspot.com>.Notify me through my e-mail: bolutalabi97@gmail.com 
+
