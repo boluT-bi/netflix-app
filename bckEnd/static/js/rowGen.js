@@ -464,9 +464,10 @@ export default class RowGen extends TMDB_interface{
             header.href = `/browse/genre/${genreDict[`${tag}`]}?bc=${searchType}`;
         }
         else{
+            
             if(tag.split(' ')[1]){
                 let spacedTag = tag.toLowerCase().split(' ');
-                header.href = `/browse/${spacedTag.join('-')}?bc=${searchType}`;
+                tag == 'My List' ? header.href  =`/${spacedTag.join('-')}`: header.href = `/browse/${spacedTag.join('-')}?bc=${searchType}`;
             }
             else{
                 header.href = `/browse/${tag.toLowerCase()}?bc=${searchType}`;
@@ -616,7 +617,7 @@ export default class RowGen extends TMDB_interface{
     
     async generatePreLoadedData(node,user,horizontal_d,data,tag,mixStatus = true,searchType = null, numbered  = false)
     {
-        mixStatus && numbered ? RowGen.singlePreLoadedDataHandle(node,data,user,horizontal_d,this.leftOffset,this.hasUrlRoute,tag,mixStatus,searchType,numbered): mixStatus && numbered ? RowGen.singlePreLoadedDataHandle(node,data,user,horizontal_d,this.leftOffset,this.hasUrlRoute,tag,mixStatus): RowGen.singlePreLoadedDataHandle(node,data,user,horizontal_d,this.leftOffset,this.hasUrlRoute,tag,mixStatus,searchType);
+        mixStatus && numbered ? RowGen.singlePreLoadedDataHandle(node,data,user,horizontal_d,this.leftOffset,this.hasUrlRoute,tag,mixStatus,searchType,numbered): mixStatus ? RowGen.singlePreLoadedDataHandle(node,data,user,horizontal_d,this.leftOffset,this.hasUrlRoute,tag,mixStatus): RowGen.singlePreLoadedDataHandle(node,data,user,horizontal_d,this.leftOffset,this.hasUrlRoute,tag,mixStatus,searchType);
     }
     generatePreLoadGrid(node,user,horizontal_d,data,mixStatus = true, searchType = null)
     {

@@ -24,7 +24,7 @@ if(myListData){
     const myList = JSON.parse(myListData);
     if(Object.keys(myList['myList']['movie']).length){
     
-        const myListRow = new RowGen(myList['myList']['movie'].length);
+        const myListRow = new RowGen(myList['myList']['movie'].length, 'My List', 'row', true);
         myListRow.generateRowById(document.getElementsByClassName('subContentOne').item(0),myList['myList']['movie'],'movie',document.getElementById('profile-user').value,'My List');
     }
 }

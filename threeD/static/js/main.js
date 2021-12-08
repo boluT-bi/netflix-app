@@ -2,7 +2,7 @@ import TMDB_interface from '../js/tmdbApiInterface.js';
 import {genericEvtCurry} from '../js/eventControls.js';
 import RowGen,{PageGen,MF,recommendSkel,heapSort,unsortedMatrix} from './rowGen.js';
 import { createTombStone,matrixToLib } from './auxiliaryFunctions.js';
-import ClientData from './ClientDataControls.js';
+import ClientData from './clientDataControls.js';
 
 function shuffle(dta)
 {

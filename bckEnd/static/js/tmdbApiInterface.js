@@ -90,7 +90,7 @@ export default class TMDB_interface{
         else{
             
             url = TMDB_interface.urlConstructor(baseURI, this.apiKey,this.language,genre,this.searchType,pageRange,this.genres,this.baseURI);
-           
+            
             return await TMDB_interface.fetchMultiple(url,searchConfig);
             
            
@@ -265,11 +265,11 @@ export default class TMDB_interface{
                     for(var i = args[2][0]; i <= args[2][1]; i++){
                         
                         if(Array.isArray(args[args.length - 2 ][args[1]][args[0]])){
-                           urlItem = baseURI + 'discover/' + `${args[1]}/` + `?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${i}&timezone=America%2FNew_York&with_genres=${args[args.length - 2][args[1]][args[0]].join('%2C')}&include_null_first_air_dates=false&with_watch_monetization_types=free`;
+                           urlItem = baseURI + 'discover/' + `${args[1]}` + `?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${i}&timezone=America%2FNew_York&with_genres=${args[args.length - 2][args[1]][args[0]].join('%2C')}&include_null_first_air_dates=false&with_watch_monetization_types=free`;
                     
                         }
                         else{
-                            urlItem =  baseURI + 'discover/' + `${args[1]}/` +`?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${i}&timezone=America%2FNew_York&with_genres=${args[args.length -2][args[1]][args[0]]}&include_null_first_air_dates=false&with_watch_monetization_types=free`;
+                            urlItem =  baseURI + 'discover/' + `${args[1]}` +`?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${i}&timezone=America%2FNew_York&with_genres=${args[args.length -2][args[1]][args[0]]}&include_null_first_air_dates=false&with_watch_monetization_types=free`;
                         }
                         url.push(urlItem);
                     }
@@ -277,11 +277,11 @@ export default class TMDB_interface{
                 else{
                     if(typeof args[args.length - 2] == 'object'){
                         if(Array.isArray(args[args.length - 2 ][args[1]][args[0]])){
-                            url = baseURI + 'discover/' + `${args[1]}/` + `?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${args[2]}&timezone=America%2FNew_York&with_genres=${args[args.length - 2][args[1]][args[0]].join('%2C')}&include_null_first_air_dates=false&with_watch_monetization_types=free`;
+                            url = baseURI + 'discover/' + `${args[1]}` + `?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${args[2]}&timezone=America%2FNew_York&with_genres=${args[args.length - 2][args[1]][args[0]].join('%2C')}&include_null_first_air_dates=false&with_watch_monetization_types=free`;
                     
                         }
                         else{
-                            url = baseURI + 'discover/' + `${args[1]}/` +`?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${args[2]}&timezone=America%2FNew_York&with_genres=${args[args.length -2][args[1]][args[0]]}&include_null_first_air_dates=false&with_watch_monetization_types=free`;
+                            url = baseURI + 'discover/' + `${args[1]}` +`?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${args[2]}&timezone=America%2FNew_York&with_genres=${args[args.length -2][args[1]][args[0]]}&include_null_first_air_dates=false&with_watch_monetization_types=free`;
                         }
                     }
                     if(typeof args[args.length -2] == 'number'){
@@ -290,11 +290,11 @@ export default class TMDB_interface{
                            
                             for(var i = 1; i<= args[args.length-2]; i++){
                                 if(Array.isArray(args[args.length - 3][args[1]][args[2]])){
-                                    var urlItem = baseURI + 'discover/' + `${args[1]}/` + `?api_key=${apiKey}&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=${i}&year=${parseInt(args[0])-1}&timezone=America%2FNew_York&with_genres=${args[args.length - 3][args[1]][args[2]].join('%2C')}&include_null_first_air_dates=false&with_watch_monetization_types=free`;
+                                    var urlItem = baseURI + 'discover/' + `${args[1]}` + `?api_key=${apiKey}&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=${i}&year=${parseInt(args[0])-1}&timezone=America%2FNew_York&with_genres=${args[args.length - 3][args[1]][args[2]].join('%2C')}&include_null_first_air_dates=false&with_watch_monetization_types=free`;
                                 }
                                 else{
                                     
-                                    var urlItem = baseURI + 'discover/' + `${args[1]}/` + `?api_key=${apiKey}&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=${i}&year=${parseInt(args[0])-1}&timezone=America%2FNew_York&with_genres=${args[args.length - 3][args[1]][args[2]]}&include_null_first_air_dates=false&with_watch_monetization_types=free`;
+                                    var urlItem = baseURI + 'discover/' + `${args[1]}` + `?api_key=${apiKey}&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=${i}&year=${parseInt(args[0])-1}&timezone=America%2FNew_York&with_genres=${args[args.length - 3][args[1]][args[2]]}&include_null_first_air_dates=false&with_watch_monetization_types=free`;
 
                                 }
                                 url.push(urlItem);
@@ -302,7 +302,7 @@ export default class TMDB_interface{
                         }
                         else{
                             for(var i = 1; i <= args[args.length - 2]; i++){
-                                var urlItem = baseURI + 'discover/' + `${args[1]}/` + `?api_key=${apiKey}&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=${i}&year=${parseInt(args[0]) - 2}&with_watch_monetization_types=free`;
+                                var urlItem = baseURI + 'discover/' + `${args[1]}` + `?api_key=${apiKey}&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=${i}&year=${parseInt(args[0]) - 2}&with_watch_monetization_types=free`;
                                 url.push(urlItem);
                             }
                         }
@@ -313,14 +313,14 @@ export default class TMDB_interface{
                             
                             for(var i = args[1][0]; i < args[1][1]; i++){
                                
-                                let urlItem = baseURI + 'discover/' + `${args[args.length - 2]}/` +`?api_key=${apiKey}&language=en-US&sort_by=${args[0]}&include_adult=false&include_video=false&page=${i}&timezone=America%2FNew_York&with_genres=${args[2][args[4]][args[3]].join('%2C')}&include_null_first_air_date=false&with_watch_monetization_types=free`;
+                                let urlItem = baseURI + 'discover/' + `${args[args.length - 2]}` +`?api_key=${apiKey}&language=en-US&sort_by=${args[0]}&include_adult=false&include_video=false&page=${i}&timezone=America%2FNew_York&with_genres=${args[2][args[4]][args[3]].join('%2C')}&include_null_first_air_date=false&with_watch_monetization_types=free`;
                                 url.push(urlItem)
                             }
                         }
                         else{
                             for(var i = args[1][0]; i < args[1][1]; i++){
                                 
-                                let urlItem = baseURI + 'discover/' + `${args[args.length - 2]}/` +`?api_key=${apiKey}&language=en-US&sort_by=${args[0]}&include_adult=false&include_video=false&page=${i}&timezone=America%2FNew_York&with_genres=${args[2][args[4]][args[3]]}&include_null_first_air_date=false&with_watch_monetization_types=free`;
+                                let urlItem = baseURI + 'discover/' + `${args[args.length - 2]}` +`?api_key=${apiKey}&language=en-US&sort_by=${args[0]}&include_adult=false&include_video=false&page=${i}&timezone=America%2FNew_York&with_genres=${args[2][args[4]][args[3]]}&include_null_first_air_date=false&with_watch_monetization_types=free`;
                                 url.push(urlItem);
                             }
                         }

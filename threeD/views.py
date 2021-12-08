@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import request,HttpResponseRedirect,HttpResponse
 from django.urls import reverse
 from django.views import View
-from threeD.forms import UserForm, ClientForm
+from threeD.forms import UserForm, ClientForm,ProfileForm
 from django.core import validators
 from threeD.models import Clients,Profile
 from django.contrib.auth.decorators import login_required
@@ -13,8 +13,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView
-from threeD.forms import ProfileForm
-from .authenticate import CustomAuth
+from threeD.authenticate import CustomAuth
 import logging
 
 

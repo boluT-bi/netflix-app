@@ -20,7 +20,7 @@ export default class Search extends TMDB_interface{
         var inputText = document.getElementsByClassName('searchInpt').item(0).value || '';
         
         var currUrl = window.location.href.slice(window.location.href.match(/\//).index + 2,);
-        
+    
         
         node.addEventListener('input',async function(e){
 
@@ -46,7 +46,7 @@ export default class Search extends TMDB_interface{
             if(!inputText.length && cachedText === 1){
                 
                 if(!/search/.test(currUrl.slice(currUrl.match(/\//).index,))){
-                   
+                    console.log(currUrl);
                     history.replaceState({urlPath:currUrl.slice(currUrl.match(/\//).index,)},"",`${currUrl.slice(currUrl.match(/\//).index,)}`);
                     Search.fetchView(currUrl.slice(currUrl.match(/\//).index,)).then((data)=>{
                         document.getElementsByClassName('ref-ctnr').item(0).innerHTML = data;
@@ -56,6 +56,7 @@ export default class Search extends TMDB_interface{
                 }
                 else{
                     
+
                     window.location.replace(window.location.href.slice(0,window.location.href.match(/(?<=[\d\.com\.org\.uk\.co.uk])\//).index)+ '/browse');
                 }
             }
@@ -90,7 +91,7 @@ export default class Search extends TMDB_interface{
     }
     static async fetchView(urlFrag)
     {
-        const baseURI = window.location.href.slice(0,window.location.href.match(/(?<=[\d\.com\.org\.uk\.co.uk])\//).index);
+        const baseURI = window.location.href.slice(0,window.location.href.match(/(?<=[\d\.com\.org])\//).index);
         
         const promise = new Promise(function(resolve,reject){
             fetch(baseURI + urlFrag, {

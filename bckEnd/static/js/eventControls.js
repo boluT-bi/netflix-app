@@ -450,7 +450,7 @@ window.activatePopUp = async function activatePopUp(elem)
     const compStyles = window.getComputedStyle(nthParent(actvNode,2));
     const subCompStyles = window.getComputedStyle(elem);
     const width = parseFloat(subCompStyles.getPropertyValue('width').split('p')[0])/parseFloat(compStyles.getPropertyValue('width').split('p')[0]) * 100;
-    console.log(elem.offsetLeft);
+    
     const cntrlIndex = nodeArray.indexOf(elem);
     const dLeftOffset = parseFloat((elem.offsetLeft/window.innerWidth) * 0.97) * 100;
     
@@ -686,17 +686,29 @@ function displayCriteria(param,searchType)
         case 'SUGGESTIONS FOR YOU':
             const gridPage = new PageGen();
             const gridData =  new ClientData();
-            const untrainedMatrix = gridData.constructMatrix(document.getElementById('profile-user').value, searchType);
             
-            const mtrxTrainer = new MF(untrainedMatrix);
-            const factors = mtrxTrainer.train();
-            const trainedMatrx = mtrxTrainer.fullMatrix(factors);
             
-            const suggestionsLib = recommendSkel(window.localStorage,trainedMatrx,searchType);
-            const unsortedMtrx =  unsortedMatrix(suggestionsLib);
-            heapSort(unsortedMtrx);
-            const sortedSuggestionLib = matrixToLib(unsortedMtrx.slice(0,100));
-            gridPage.generateIdPage(document.getElementsByClassName('subContentOne').item(0),document.getElementById('profile-user').value,Object.keys(sortedSuggestionLib),searchType);
+            if(window.localStorage[`${document.getElementById('profile-user').value}`] && Object.keys(JSON.parse(window.localStorage[`${document.getElementById('profile-user').value}`])[searchType]).length >= 5){
+                const untrainedMatrix = gridData.constructMatrix(document.getElementById('profile-user').value, searchType);
+                
+                const mtrxTrainer = new MF(untrainedMatrix);
+                const factors = mtrxTrainer.train();
+                const trainedMatrx = mtrxTrainer.fullMatrix(factors);
+                
+                const suggestionsLib = recommendSkel(window.localStorage,trainedMatrx,searchType);
+                const unsortedMtrx =  unsortedMatrix(suggestionsLib);
+                heapSort(unsortedMtrx);
+                
+                const sortedSuggestionLib = matrixToLib(unsortedMtrx);
+                gridPage.generateIdPage(document.getElementsByClassName('subContentOne').item(0),document.getElementById('profile-user').value,Object.keys(sortedSuggestionLib),searchType);
+            }
+            else{
+                const nullPrompt = document.createElement('p');
+                nullPrompt.textContent = 'No Suggestions Just Yet';
+                nullPrompt.className = 'sugg-null';
+                document.getElementsByClassName('subContentOne').item(0).appendChild(nullPrompt);
+
+            }
         break;
         case 'YEAR RELEASED':
             const gridPageReleaseYear = new PageGen();
@@ -705,21 +717,21 @@ function displayCriteria(param,searchType)
         case 'A-Z':
             
             const gridPageChronological = new PageGen();
-            gridPageChronological.generatePageByCriteria(document.getElementsByClassName('subContentOne').item(0),document.getElementById('profile-user').value,'A-Z',searchType);
+            gridPageChronological.generatePageByCriteria(document.getElementsByClassName('subContentOne').item(0),document.getElementById('profile-user').value,'A-Z',searchType, [10,40]);
 
         break;
 
         case 'Z-A':
             const gridPageReverseChronological = new PageGen();
-            gridPageReverseChronological.generatePageByCriteria(document.getElementsByClassName('subContentOne').item(0),document.getElementById('profile-user').value,'Z-A',searchType);
+            gridPageReverseChronological.generatePageByCriteria(document.getElementsByClassName('subContentOne').item(0),document.getElementById('profile-user').value,'Z-A',searchType,[10,40]);
         break;
     }
-
 }
 async function redisplayRow(searchType)
 {
     const page = new RowGen();
     const API_INSTANCE = new TMDB_interface(null,searchType)
+    const STORAGE_INSTANCE = new ClientData();
     const TS_DATA = await API_INSTANCE.searchPopularTitles(null,1);
     createTombStone(searchType,TS_DATA);
     page.generatePopularRow(document.getElementsByClassName('subContentOne').item(0),document.getElementById('profile-user').value,searchType,null,1,'Popular');
@@ -729,16 +741,16 @@ async function redisplayRow(searchType)
     const myListData = JSON.parse(window.localStorage[`${document.getElementById('profile-user').value}`]);
     if(Object.keys(myListData['myList'][`${searchType}`]).length){
    
-        const myListRow = new RowGen(myListData['myList'][`${searchType}`].length);
+        const myListRow = new RowGen(myListData['myList'][`${searchType}`].length, 'My List', 'row', true);
         myListRow.generateRowById(document.getElementsByClassName('subContentOne').item(0),myListData['myList'][`${searchType}`],searchType,document.getElementById('profile-user').value,'My List');
     }
     if(window.localStorage[`${document.getElementById('profile-user').value}`] && Object.keys(window.localStorage).length > 1){
-        const matrixFactorized = new MF(STORAGE_INSTANCE.constructMatrix(document.getElementById('profile-user').value,RAND_ST));
+        const matrixFactorized = new MF(STORAGE_INSTANCE.constructMatrix(document.getElementById('profile-user').value,searchType));
         const factors = matrixFactorized.train();
         const recommendMatrix = matrixFactorized.fullMatrix(factors);
     
     
-        const recommendHM = recommendSkel(window.localStorage,recommendMatrix,RAND_ST);
+        const recommendHM = recommendSkel(window.localStorage,recommendMatrix,searchType);
     
         const idMatrix = unsortedMatrix(recommendHM);
     
@@ -746,7 +758,7 @@ async function redisplayRow(searchType)
         if(idMatrix.length >= 20){
             const top20recommendedLib = matrixToLib(idMatrix.slice(0,20));
     
-            row.generateRowById(document.getElementsByClassName('subContentOne').item(0),Object.keys(top20recommendedLib),RAND_ST,document.getElementById('profile-user').value,`Top Picks For ${document.getElementById('profile-user').value}`);
+            row.generateRowById(document.getElementsByClassName('subContentOne').item(0),Object.keys(top20recommendedLib),searchType,document.getElementById('profile-user').value,`Top Picks For ${document.getElementById('profile-user').value}`);
         }
     }
     

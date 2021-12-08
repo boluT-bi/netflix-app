@@ -4,7 +4,7 @@ from django.core.checks.messages import Error
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.backends import BaseBackend
 from django.contrib.auth import get_user
-from .models import Profile
+from threeD.models import Profile
 
 class CustomAuth(BaseBackend):
 

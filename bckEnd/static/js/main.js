@@ -2,7 +2,7 @@ import TMDB_interface from '../js/tmdbApiInterface.js';
 import {genericEvtCurry} from '../js/eventControls.js';
 import RowGen,{PageGen,MF,recommendSkel,heapSort,unsortedMatrix} from './rowGen.js';
 import { createTombStone,matrixToLib } from './auxiliaryFunctions.js';
-import ClientData from './ClientDataControls.js';
+import ClientData from './clientDataControls.js';
 
 function shuffle(dta)
 {
@@ -57,6 +57,9 @@ const TS_INSTANCE = new TMDB_interface(null,SEARCH_TYPE[Math.floor(Math.random()
 const SEARCH_INSTANCE = new TMDB_interface();
 const TS_DATA = await TS_INSTANCE.searchPopularTitles(null,1);
 const RAND_ST = SEARCH_TYPE[Math.floor(Math.random()* SEARCH_TYPE.length)];
+const P_NODE = document.getElementsByClassName('subContentOne').item(0);
+const CURR_USER = document.getElementById('profile-user').value;
+
 createTombStone(TS_INSTANCE.searchType,TS_DATA);
 
 const page = new RowGen();
@@ -70,21 +73,22 @@ if(myListData){
     const myList = JSON.parse(myListData);
     if(Object.keys(myList['myList']['tv']).length){
         if(Object.keys(myList['myList']['tv']).length && Object.keys(myList['myList']['movie']).length){
-            const TV_ID_DTA = await API_INSTANCE.searchById(myList['myList']['tv'], 'tv');
-            const MV_ID_DTA =  await API_INSTANCE.searchById(myList['myList']['movie'], 'movie');
+            const TV_ID_DTA = await SEARCH_INSTANCE.searchById(myList['myList']['tv'], 'tv');
+            const MV_ID_DTA =  await SEARCH_INSTANCE.searchById(myList['myList']['movie'], 'movie');
             const LABLED_TV_DTA = assignSearchType(TV_ID_DTA, 'tv');
             const LABLED_MV_DTA = assignSearchType(MV_ID_DTA, 'movie');
-            const MASTER_MY_LIST_DTA = concatDta(LABLED_TV_DTA,LABLED_MV_DTA); 
-            const MY_LIST_PG = new PageGen();
+            const MASTER_MY_LIST_DTA = { "results" : []};
+            MASTER_MY_LIST_DTA["results"] = concatDta(LABLED_TV_DTA,LABLED_MV_DTA); 
+            const MY_LIST_PG = new RowGen(MASTER_MY_LIST_DTA["results"].length,'My List', 'row', true);
 
-            MY_LIST_PG.preLoadDtaPage(P_NODE,CURR_USER,MASTER_MY_LIST_DTA.length,MASTER_MY_LIST_DTA);
+            MY_LIST_PG.generatePreLoadedData(P_NODE,CURR_USER,MASTER_MY_LIST_DTA["results"].length,MASTER_MY_LIST_DTA,'My List',true);
 
         }
         else{
             
         
-            const myListRow = new RowGen(myList['myList']['tv'].length);
-            myListRow.generateRowById(document.getElementsByClassName('subContentOne').item(0),myListData['myList']['tv'],'tv',document.getElementById('profile-user').value,'My List');
+            const myListRow = new RowGen(myList['myList']['tv'].length, 'My List', 'row', true);
+            myListRow.generateRowById(document.getElementsByClassName('subContentOne').item(0),myList['myList']['tv'],'tv',document.getElementById('profile-user').value,'My List');
 
         }
     }
